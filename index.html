@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* === GLOBAL === */
     * {
       margin: 0;
       padding: 0;
@@ -23,9 +22,7 @@
       overflow-x: hidden;
     }
 
-    a {
-      text-decoration: none;
-    }
+    a { text-decoration: none; }
 
     /* === HEADER === */
     header {
@@ -61,32 +58,32 @@
 
     /* === HERO === */
     .hero {
-      background: radial-gradient(circle at center, #0b1a2b 0%, #0b0f19 80%);
-      color: white;
-      text-align: center;
-      padding: 150px 20px;
       position: relative;
+      text-align: center;
+      color: white;
+      padding: 180px 20px 140px;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: "";
+    canvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/circuit-board.png');
-      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h2 {
       font-size: 2.8rem;
       color: #00e0ff;
-      text-shadow: 0 0 10px #00e0ff;
+      text-shadow: 0 0 12px #00e0ff;
       margin-bottom: 15px;
-      z-index: 1;
-      position: relative;
     }
 
     .hero p {
@@ -94,8 +91,6 @@
       color: #b0c4de;
       max-width: 650px;
       margin: 0 auto 30px;
-      z-index: 1;
-      position: relative;
     }
 
     .hero a {
@@ -104,11 +99,8 @@
       padding: 14px 40px;
       border-radius: 30px;
       font-weight: 600;
-      letter-spacing: 0.5px;
       box-shadow: 0 0 10px #00e0ff;
       transition: all 0.3s ease;
-      z-index: 1;
-      position: relative;
     }
 
     .hero a:hover {
@@ -117,39 +109,42 @@
       transform: translateY(-2px);
     }
 
-    /* === ABOUT === */
-    .about {
-      padding: 100px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: auto;
+    .typing {
+      border-right: 2px solid #00e0ff;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      width: 0;
+      animation: typing 4s steps(40) forwards, blink 0.75s step-end infinite;
     }
 
-    .about h3 {
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    /* === SECTION TEMPLATE === */
+    section {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    section h3 {
       font-size: 2rem;
       color: #00e0ff;
       text-shadow: 0 0 8px #00e0ff;
       margin-bottom: 25px;
     }
 
+    /* === ABOUT === */
     .about p {
       color: #cfd8dc;
       font-size: 1.05rem;
+      max-width: 900px;
+      margin: auto;
     }
 
     /* === PROGRAMS === */
     .programs {
       background: linear-gradient(180deg, #0b0f19 0%, #111827 100%);
-      padding: 100px 40px;
-      text-align: center;
-      position: relative;
-    }
-
-    .programs h3 {
-      font-size: 2rem;
-      color: #00e0ff;
-      text-shadow: 0 0 8px #00e0ff;
-      margin-bottom: 60px;
     }
 
     .program-list {
@@ -157,6 +152,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 35px;
+      margin-top: 40px;
     }
 
     .card {
@@ -185,6 +181,46 @@
       font-size: 0.95rem;
     }
 
+    /* === FUTURE TECH === */
+    .future-tech {
+      background: radial-gradient(circle at center, #101826 0%, #0b0f19 80%);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+      padding: 0 20px;
+      max-width: 1100px;
+      margin-inline: auto;
+    }
+
+    .tech-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .tech-item:hover {
+      background: rgba(0, 255, 255, 0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    .tech-item h4 {
+      color: #00e0ff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 6px #00e0ff;
+    }
+
+    .tech-item p {
+      color: #cfd8dc;
+      font-size: 0.95rem;
+    }
+
     /* === FOOTER === */
     footer {
       background-color: #0a0d16;
@@ -194,24 +230,23 @@
       border-top: 1px solid rgba(0, 255, 255, 0.2);
     }
 
-    footer p {
-      font-size: 0.9rem;
-    }
+    footer p { font-size: 0.9rem; }
 
+    /* === RESPONSIVE === */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         gap: 10px;
+        padding: 15px 30px;
       }
 
-      .program-list {
-        flex-direction: column;
-        align-items: center;
-      }
+      nav a { margin: 8px; display: inline-block; }
 
-      .hero h2 {
-        font-size: 2rem;
-      }
+      .hero h2 { font-size: 2rem; }
+
+      .hero p { font-size: 1rem; }
+
+      .card { width: 90%; }
     }
   </style>
 </head>
@@ -224,15 +259,19 @@
       <a href="#">Home</a>
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
+      <a href="#future-tech">Future Tech</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- === HERO === -->
   <section class="hero">
-    <h2>Innovation Beyond Limits</h2>
-    <p>Empowering the Future with IT — Building knowledge, creativity, and leadership through technology-driven education.</p>
-    <a href="#programs">Explore Programs</a>
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <h2><span class="typing">Innovation Beyond Limits</span></h2>
+      <p>Empowering the Future with IT — Building knowledge, creativity, and leadership through technology-driven education.</p>
+      <a href="#programs">Explore Programs</a>
+    </div>
   </section>
 
   <!-- === ABOUT === -->
@@ -261,10 +300,84 @@
     </div>
   </section>
 
+  <!-- === FUTURE TECH === -->
+  <section id="future-tech" class="future-tech">
+    <h3>The Future of Technology</h3>
+    <p>Technology continues to evolve at an unprecedented pace, shaping how we live, learn, and connect. Here are some key innovations leading the future of IT:</p>
+
+    <div class="tech-grid">
+      <div class="tech-item">
+        <h4>Artificial Intelligence (AI)</h4>
+        <p>AI will keep transforming industries through automation, personalized experiences, and smarter decision-making systems.</p>
+      </div>
+      <div class="tech-item">
+        <h4>Quantum Computing</h4>
+        <p>This emerging technology will revolutionize computing power, enabling complex problem-solving beyond classical limits.</p>
+      </div>
+      <div class="tech-item">
+        <h4>Internet of Things (IoT)</h4>
+        <p>Connected devices will continue to make homes, cities, and industries more efficient and intelligent.</p>
+      </div>
+      <div class="tech-item">
+        <h4>Blockchain</h4>
+        <p>Blockchain will expand beyond cryptocurrency, enhancing data security, transparency, and digital identity systems.</p>
+      </div>
+      <div class="tech-item">
+        <h4>Augmented & Virtual Reality</h4>
+        <p>AR and VR will reshape education, healthcare, and entertainment by merging digital and physical worlds.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- === FOOTER === -->
   <footer id="contact">
     <p>© 2025 Beyond Limits IT | Innovation Beyond Limits: Empowering the Future with IT</p>
   </footer>
 
+  <!-- === PARTICLE ANIMATION SCRIPT === -->
+  <script>
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const numParticles = 70;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 0.8;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 224, 255, 0.6)";
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
 </body>
 </html>
